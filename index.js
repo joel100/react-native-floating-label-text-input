@@ -72,7 +72,6 @@ var FloatLabelTextField = React.createClass({
   },
 
   componentWillReceiveProps: function(newProps) {
-    console.log('componentWillReceiveProps');
     this.setState({
       text: newProps.value
     });
@@ -148,8 +147,6 @@ var FloatLabelTextField = React.createClass({
   },
 
   setText: function(value) {
-    console.log(`SetText: ${value}`);
-
     this.setState({
       text: value
     });
@@ -158,7 +155,6 @@ var FloatLabelTextField = React.createClass({
   },
 
   onChange: function(event) {
-    console.log(`onChange: ${event.nativeEvent.text}`);
     this.setText(event.nativeEvent.text); 
 
     if (this.props.onChangeText) {
