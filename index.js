@@ -94,7 +94,7 @@ var FloatLabelTextField = React.createClass({
             <FloatingLabel visible={this.state.text}>
               <Text style={[styles.fieldLabel, 
                             this.getAdditionalStyle('fieldLabel'), 
-                            this.labelStyle()]}>{this.placeHolderValue()}</Text>
+                            this.labelStyle()]}>{this.placeholderValue()}</Text>
             </FloatingLabel>
             <TextFieldHolder withValue={this.state.text}>
               <TextInput
@@ -102,12 +102,16 @@ var FloatLabelTextField = React.createClass({
                 placeholder={this.props.placeholder}
                 style={[styles.valueText, this.getAdditionalStyle('valueText')]}
                 value={this.props.value}
+                defaultValue={this.props.defaultValue}
+                maxLength={this.props.maxLength}
+                selectionColor={this.props.selectionColor}
                 onFocus={this.setFocus}
                 onBlur={this.unsetFocus}
                 onChange={this.onChange}
                 secureTextEntry={this.props.secureTextEntry}
                 keyboardType={this.props.keyboardType}
                 autoCapitalize={this.props.autoCapitalize}
+                autoCorrect={this.props.autoCorrect}
               />
             </TextFieldHolder>
           </View>
@@ -140,7 +144,7 @@ var FloatLabelTextField = React.createClass({
     }
   },
 
-  placeHolderValue: function() {
+  placeholderValue: function() {
     if (this.state.text) {
       return this.props.placeholder;
     }
