@@ -77,30 +77,33 @@ var FloatLabelTextField = React.createClass({
     });
   },
 
-  getAdditionalStyle: function(name) {
-    if (this.props.style && this.props.style[name])
-    {
-      return this.props.style[name];
-    }
-
-    return {};
-  },
-
   render: function() {
     return(
-      <View style={[styles.container, this.getAdditionalStyle('container')]}>
-        <View style={[styles.viewContainer, this.getAdditionalStyle('viewContainer')]}>
-          <View style={[styles.fieldContainer, this.getAdditionalStyle('fieldContainer')]}>
+      <View style={[styles.container, { height: this.props.style.height }]}>
+        <View style={styles.viewContainer}>
+          <View style={[styles.fieldContainer, 
+                        { 
+                          borderWidth: this.props.style.borderWidth, 
+                          borderColor: this.props.style.borderColor, 
+                          borderRadius: this.props.style.borderRadius,
+                          paddingLeft: this.props.style.paddingLeft
+                        }]}>
             <FloatingLabel visible={this.state.text}>
               <Text style={[styles.fieldLabel, 
-                            this.getAdditionalStyle('fieldLabel'), 
+                            { paddingLeft: this.props.style.paddingLeft }, 
                             this.labelStyle()]}>{this.placeholderValue()}</Text>
             </FloatingLabel>
             <TextFieldHolder withValue={this.state.text}>
               <TextInput
                 ref={textInput => this.textInput = textInput}
                 placeholder={this.props.placeholder}
-                style={[styles.valueText, this.getAdditionalStyle('valueText')]}
+                placeholderTextColor={this.props.placeholderTextColor}
+                style={[styles.valueText, 
+                        { 
+                          fontFamily: this.props.style.fontFamily, 
+                          fontSize: this.props.style.fontSize,
+                          color: this.props.color 
+                        }]}
                 value={this.props.value}
                 defaultValue={this.props.defaultValue}
                 maxLength={this.props.maxLength}
@@ -140,7 +143,7 @@ var FloatLabelTextField = React.createClass({
 
   labelStyle: function() {
     if (this.state.focussed) {
-      return  this.props.style && this.props.style.focussed ? this.props.style.focussed : styles.focussed;
+      return  this.props.style && this.props.style.focussedColor ? { color: this.props.style.focussedColor } : styles.focussed;
     }
   },
 
