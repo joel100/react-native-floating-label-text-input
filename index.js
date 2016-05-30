@@ -1,25 +1,31 @@
 'use strict';
 
-var React = require('react-native');
-var { StyleSheet, Text, View, TextInput, Animated } = React;
+import React from 'react';
+import { StyleSheet, Text, View, TextInput, Animated } from 'react-native';
 
-var FloatingLabel = React.createClass({
-  getInitialState: function() {
-    var initialPadding = 9;
-    var initialOpacity = 0;
+class FloatingLabel extends React.Component
+{
+  constructor(props) {
+    super(props);
+
+    let initialPadding = 9;
+    let initialOpacity = 0;
 
     if (this.props.visible) {
       initialPadding = 5;
       initialOpacity = 1;
     }
 
-    return {
+    this.state = {
       paddingAnim: new Animated.Value(initialPadding),
       opacityAnim: new Animated.Value(initialOpacity)
     };
-  },
 
-  componentWillReceiveProps: function(newProps) {
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+    this.render = this.render.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
     Animated.timing(this.state.paddingAnim, {
       toValue: newProps.visible ? 5 : 9,
       duration: 230
@@ -29,64 +35,82 @@ var FloatingLabel = React.createClass({
       toValue: newProps.visible ? 1 : 0,
       duration: 230
     }).start();
-  },
+  }
 
-  render: function() {
+  render() {
     return(
       <Animated.View style={[styles.floatingLabel, {paddingTop: this.state.paddingAnim, opacity: this.state.opacityAnim}]}>
         {this.props.children}
       </Animated.View>
     );
   }
-});
+}
 
-var TextFieldHolder = React.createClass({
-  getInitialState: function() {
-    return {
+class TextFieldHolder extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       marginAnim: new Animated.Value(this.props.withValue ? 10 : 0)
     };
-  },
 
-  componentWillReceiveProps: function(newProps) {
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+    this.render = this.render.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
     return Animated.timing(this.state.marginAnim, {
       toValue: newProps.withValue ? 10 : 0,
       duration: 230
     }).start();
-  },
+  }
 
-  render: function() {
+  render() {
     return(
       <Animated.View style={{marginTop: this.state.marginAnim}}>
         {this.props.children}
       </Animated.View>
     );
   }
-});
+}
 
-var FloatLabelTextField = React.createClass({
-  getInitialState: function() {
-    return {
+class FloatLabelTextField extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       focussed: false,
       text: this.props.value
     };
-  },
 
-  componentWillReceiveProps: function(newProps) {
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+    this.getAdditionalStyle = this.getAdditionalStyle.bind(this);
+    this.render = this.render.bind(this);
+    this.setFocus = this.setFocus.bind(this);
+    this.unsetFocus = this.unsetFocus.bind(this);
+    this.labelStyle = this.labelStyle.bind(this);
+    this.placeholderValue = this.placeholderValue.bind(this);
+    this.setText = this.setText.bind(this);
+    this.onChange = this.onChange.bind(this);
+    console.log('items bound');
+  }
+
+  componentWillReceiveProps(newProps) {
     this.setState({
       text: newProps.value
     });
-  },
+  }
 
-  getAdditionalStyle: function(name) {
+  getAdditionalStyle(name) {
     if (this.props.style && this.props.style[name])
     {
       return this.props.style[name];
     }
 
     return {};
-  },
+  }
 
-  render: function() {
+  render() {
     return(
       <View style={[styles.container, this.getAdditionalStyle('container')]}>
         <View style={[styles.viewContainer, this.getAdditionalStyle('viewContainer')]}>
@@ -118,47 +142,47 @@ var FloatLabelTextField = React.createClass({
         </View>
       </View>
     );
-  },
+  }
   
-  setFocus: function() {
+  setFocus() {
     this.setState({
       focussed: true
     });
     try {
       return this.props.onFocus();
     } catch (_error) {}
-  },
+  }
 
-  unsetFocus: function() {
+  unsetFocus() {
     this.setState({
       focussed: false
     });
     try {
       return this.props.onBlur();
     } catch (_error) {}
-  },
+  }
 
-  labelStyle: function() {
+  labelStyle() {
     if (this.state.focussed) {
       return  this.props.style && this.props.style.focussed ? this.props.style.focussed : styles.focussed;
     }
-  },
+  }
 
-  placeholderValue: function() {
+  placeholderValue() {
     if (this.state.text) {
       return this.props.placeholder;
     }
-  },
+  }
 
-  setText: function(value) {
+  setText(value) {
     this.setState({
       text: value
     });
 
     this.textInput.refs.input.setNativeProps(value);
-  },
+  }
 
-  onChange: function(event) {
+  onChange(event) {
     this.setText(event.nativeEvent.text); 
 
     if (this.props.onChangeText) {
@@ -169,7 +193,7 @@ var FloatLabelTextField = React.createClass({
       this.props.onChange(event);
     }
   }
-});
+}
 
 var styles = StyleSheet.create({
   container: {
