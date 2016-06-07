@@ -133,6 +133,7 @@ class FloatLabelTextField extends React.Component {
                 onBlur={this.unsetFocus}
                 onChange={this.onChange}
                 secureTextEntry={this.props.secureTextEntry}
+                password={this.props.password}
                 keyboardType={this.props.keyboardType}
                 autoCapitalize={this.props.autoCapitalize}
                 autoCorrect={this.props.autoCorrect}
@@ -148,6 +149,11 @@ class FloatLabelTextField extends React.Component {
     this.setState({
       focussed: true
     });
+
+    if (this.props.onFocus) {
+      this.props.onFocus();
+    }
+
     try {
       return this.props.onFocus();
     } catch (_error) {}
