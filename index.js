@@ -92,7 +92,6 @@ class FloatLabelTextField extends React.Component {
     this.placeholderValue = this.placeholderValue.bind(this);
     this.setText = this.setText.bind(this);
     this.onChange = this.onChange.bind(this);
-    console.log('items bound');
   }
 
   componentWillReceiveProps(newProps) {
@@ -124,6 +123,7 @@ class FloatLabelTextField extends React.Component {
               <TextInput
                 ref={textInput => this.textInput = textInput}
                 placeholder={this.props.placeholder}
+                placeholderTextColor={this.getAdditionalStyle('placeholderTextColor')}
                 style={[styles.valueText, this.getAdditionalStyle('valueText')]}
                 value={this.props.value}
                 defaultValue={this.props.defaultValue}
