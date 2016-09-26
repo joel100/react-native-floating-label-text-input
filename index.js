@@ -185,7 +185,7 @@ class FloatLabelTextField extends React.Component {
       text: value
     });
 
-    this.textInput.refs.input.setNativeProps(value);
+    this.textInput.setNativeProps(value);
   }
 
   onChange(event) {
