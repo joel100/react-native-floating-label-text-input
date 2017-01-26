@@ -1,10 +1,15 @@
 'use strict';
 
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Animated } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Animated
+} from 'react-native';
 
-class FloatingLabel extends React.Component
-{
+class FloatingLabel extends React.Component {
   constructor(props) {
     super(props);
 
@@ -38,7 +43,7 @@ class FloatingLabel extends React.Component
   }
 
   render() {
-    return(
+    return (
       <Animated.View style={[styles.floatingLabel, {paddingTop: this.state.paddingAnim, opacity: this.state.opacityAnim}]}>
         {this.props.children}
       </Animated.View>
@@ -66,7 +71,7 @@ class TextFieldHolder extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <Animated.View style={{marginTop: this.state.marginAnim}}>
         {this.props.children}
       </Animated.View>
@@ -101,8 +106,7 @@ class FloatLabelTextField extends React.Component {
   }
 
   getAdditionalStyle(name) {
-    if (this.props.style && this.props.style[name])
-    {
+    if (this.props.style && this.props.style[name]) {
       return this.props.style[name];
     }
 
@@ -110,7 +114,7 @@ class FloatLabelTextField extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <View style={[styles.container, this.getAdditionalStyle('container')]}>
         <View style={[styles.viewContainer, this.getAdditionalStyle('viewContainer')]}>
           <View style={[styles.fieldContainer, this.getAdditionalStyle('fieldContainer')]}>
@@ -136,7 +140,8 @@ class FloatLabelTextField extends React.Component {
                 password={this.props.password}
                 keyboardType={this.props.keyboardType}
                 autoCapitalize={this.props.autoCapitalize}
-                autoCorrect={this.props.autoCorrect}
+                autoCorrect={this.props.autoCorrect},
+                underlineColorAndroid="transparent"
               />
             </TextFieldHolder>
           </View>
@@ -144,7 +149,7 @@ class FloatLabelTextField extends React.Component {
       </View>
     );
   }
-  
+
   setFocus() {
     this.setState({
       focussed: true
@@ -170,7 +175,7 @@ class FloatLabelTextField extends React.Component {
 
   labelStyle() {
     if (this.state.focussed) {
-      return  this.props.style && this.props.style.focussed ? this.props.style.focussed : styles.focussed;
+      return this.props.style && this.props.style.focussed ? this.props.style.focussed : styles.focussed;
     }
   }
 
@@ -189,7 +194,7 @@ class FloatLabelTextField extends React.Component {
   }
 
   onChange(event) {
-    this.setText(event.nativeEvent.text); 
+    this.setText(event.nativeEvent.text);
 
     if (this.props.onChangeText) {
       this.props.onChangeText(event.nativeEvent.text);
