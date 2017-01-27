@@ -140,7 +140,7 @@ class FloatLabelTextField extends React.Component {
                 password={this.props.password}
                 keyboardType={this.props.keyboardType}
                 autoCapitalize={this.props.autoCapitalize}
-                autoCorrect={this.props.autoCorrect},
+                autoCorrect={this.props.autoCorrect}
                 underlineColorAndroid="transparent"
               />
             </TextFieldHolder>
