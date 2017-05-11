@@ -118,9 +118,9 @@ class FloatLabelTextField extends React.Component {
           <View style={[styles.fieldContainer, this.getAdditionalStyle('fieldContainer')]}>
             <FloatingLabel visible={this.state.text}>
               <Text style={[styles.fieldLabel,
-                this.getAdditionalStyle('fieldLabel'),
-                this.labelStyle()]}
-              >{this.placeholderValue()}</Text>
+                            this.getAdditionalStyle('fieldLabel'),
+                            this.labelStyle()]}>{this.placeholderValue()}
+              </Text>
             </FloatingLabel>
             <TextFieldHolder withValue={this.state.text}>
               <TextInput
@@ -154,11 +154,6 @@ class FloatLabelTextField extends React.Component {
     this.setState({
       focussed: true
     });
-
-    if (this.props.onFocus) {
-      this.props.onFocus();
-    }
-
     try {
       return this.props.onFocus();
     } catch (_error) {}
