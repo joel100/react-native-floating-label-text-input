@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import {
   StyleSheet,
@@ -44,7 +42,7 @@ class FloatingLabel extends React.Component {
 
   render() {
     return (
-      <Animated.View style={[styles.floatingLabel, {paddingTop: this.state.paddingAnim, opacity: this.state.opacityAnim}]}>
+      <Animated.View style={[styles.floatingLabel, { paddingTop: this.state.paddingAnim, opacity: this.state.opacityAnim }]}>
         {this.props.children}
       </Animated.View>
     );
@@ -72,7 +70,7 @@ class TextFieldHolder extends React.Component {
 
   render() {
     return (
-      <Animated.View style={{marginTop: this.state.marginAnim}}>
+      <Animated.View style={{ marginTop: this.state.marginAnim }}>
         {this.props.children}
       </Animated.View>
     );
@@ -119,29 +117,31 @@ class FloatLabelTextField extends React.Component {
         <View style={[styles.viewContainer, this.getAdditionalStyle('viewContainer')]}>
           <View style={[styles.fieldContainer, this.getAdditionalStyle('fieldContainer')]}>
             <FloatingLabel visible={this.state.text}>
-              <Text style={[styles.fieldLabel, 
-                            this.getAdditionalStyle('fieldLabel'), 
-                            this.labelStyle()]}>{this.placeholderValue()}</Text>
+              <Text style={[styles.fieldLabel,
+                this.getAdditionalStyle('fieldLabel'),
+                this.labelStyle()]}
+              >{this.placeholderValue()}</Text>
             </FloatingLabel>
             <TextFieldHolder withValue={this.state.text}>
               <TextInput
-                ref={textInput => this.textInput = textInput}
-                placeholder={this.props.placeholder}
-                placeholderTextColor={this.getAdditionalStyle('placeholderTextColor')}
-                style={[styles.valueText, this.getAdditionalStyle('valueText')]}
-                value={this.props.value}
-                defaultValue={this.props.defaultValue}
-                maxLength={this.props.maxLength}
-                selectionColor={this.props.selectionColor}
-                onFocus={this.setFocus}
-                onBlur={this.unsetFocus}
-                onChange={this.onChange}
-                secureTextEntry={this.props.secureTextEntry}
-                password={this.props.password}
-                keyboardType={this.props.keyboardType}
-                autoCapitalize={this.props.autoCapitalize}
-                autoCorrect={this.props.autoCorrect}
-                underlineColorAndroid="transparent"
+                  ref={textInput => this.textInput = textInput}
+                  placeholder={this.props.placeholder}
+                  placeholderTextColor={this.getAdditionalStyle('placeholderTextColor')}
+                  style={[styles.valueText, this.getAdditionalStyle('valueText')]}
+                  value={this.props.value}
+                  defaultValue={this.props.defaultValue}
+                  maxLength={this.props.maxLength}
+                  selectionColor={this.props.selectionColor}
+                  onFocus={this.setFocus}
+                  onBlur={this.unsetFocus}
+                  onChange={this.onChange}
+                  secureTextEntry={this.props.secureTextEntry}
+                  password={this.props.password}
+                  keyboardType={this.props.keyboardType}
+                  autoCapitalize={this.props.autoCapitalize}
+                  autoCorrect={this.props.autoCorrect}
+                  underlineColorAndroid="transparent"
+                  editable={this.props.editable}
               />
             </TextFieldHolder>
           </View>
@@ -242,7 +242,7 @@ var styles = StyleSheet.create({
     color: '#111111'
   },
   focussed: {
-    color: "#1482fe"
+    color: '#1482fe'
   }
 });
 
