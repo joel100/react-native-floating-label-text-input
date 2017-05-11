@@ -120,7 +120,9 @@ class FloatLabelTextField extends React.Component {
               <Text style={[styles.fieldLabel,
                 this.getAdditionalStyle('fieldLabel'),
                 this.labelStyle()]}
-              >{this.placeholderValue()}</Text>
+              >
+              {this.placeholderValue()}
+              </Text>
             </FloatingLabel>
             <TextFieldHolder withValue={this.state.text}>
               <TextInput
