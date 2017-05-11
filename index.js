@@ -118,8 +118,10 @@ class FloatLabelTextField extends React.Component {
           <View style={[styles.fieldContainer, this.getAdditionalStyle('fieldContainer')]}>
             <FloatingLabel visible={this.state.text}>
               <Text style={[styles.fieldLabel,
-                            this.getAdditionalStyle('fieldLabel'),
-                            this.labelStyle()]}>{this.placeholderValue()}
+                this.getAdditionalStyle('fieldLabel'),
+                this.labelStyle()]}
+              >
+              {this.placeholderValue()}
               </Text>
             </FloatingLabel>
             <TextFieldHolder withValue={this.state.text}>
@@ -137,6 +139,8 @@ class FloatLabelTextField extends React.Component {
                   onChange={this.onChange}
                   secureTextEntry={this.props.secureTextEntry}
                   password={this.props.password}
+                  onSubmitEditing= {this.props.onSubmitEditing}
+                  returnKeyType={this.props.returnKeyType}
                   keyboardType={this.props.keyboardType}
                   autoCapitalize={this.props.autoCapitalize}
                   autoCorrect={this.props.autoCorrect}
