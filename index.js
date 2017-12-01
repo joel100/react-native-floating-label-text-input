@@ -134,6 +134,7 @@ class FloatLabelTextField extends React.Component {
                   defaultValue={this.props.defaultValue}
                   maxLength={this.props.maxLength}
                   selectionColor={this.props.selectionColor}
+                  autoFocus={this.props.autoFocus}
                   onFocus={this.setFocus}
                   onBlur={this.unsetFocus}
                   onChange={this.onChange}
