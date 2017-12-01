@@ -127,6 +127,7 @@ class FloatLabelTextField extends React.Component {
             <TextFieldHolder withValue={this.state.text}>
               <TextInput
                   ref={textInput => this.textInput = textInput}
+                  {...this.props}
                   placeholder={this.props.placeholder}
                   placeholderTextColor={this.getAdditionalStyle('placeholderTextColor')}
                   style={[styles.valueText, this.getAdditionalStyle('valueText')]}
@@ -134,7 +135,6 @@ class FloatLabelTextField extends React.Component {
                   defaultValue={this.props.defaultValue}
                   maxLength={this.props.maxLength}
                   selectionColor={this.props.selectionColor}
-                  autoFocus={this.props.autoFocus}
                   onFocus={this.setFocus}
                   onBlur={this.unsetFocus}
                   onChange={this.onChange}
